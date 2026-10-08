@@ -1,0 +1,3 @@
+import mongoose from 'mongoose';
+const S=new mongoose.Schema({vendorId:{type:mongoose.Schema.Types.ObjectId,ref:'Vendor',required:true,index:true},name:{type:String,required:true},url:{type:String,required:true},sourceType:{type:String,enum:['official_pricing','official_docs','official_help','partner','manual','other'],default:'official_pricing'},enabled:{type:Boolean,default:true},extractionMethod:{type:String,enum:['css','regex','jsonld','manual'],default:'css'},cssSelector:String,pricePattern:String,currency:{type:String,default:'INR'},confidence:{type:Number,default:100},lastCheckedAt:Date,lastSuccessAt:Date,lastError:String},{timestamps:true});
+export default mongoose.models.VendorSource||mongoose.model('VendorSource',S);

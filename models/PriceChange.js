@@ -1,0 +1,3 @@
+import mongoose from 'mongoose';
+const S=new mongoose.Schema({vendorId:{type:mongoose.Schema.Types.ObjectId,ref:'Vendor',index:true},sourceId:{type:mongoose.Schema.Types.ObjectId,ref:'VendorSource'},oldPrice:Number,newPrice:Number,priceText:String,changeType:{type:String,enum:['PRICE_INCREASE','PRICE_DECREASE','NEW_PRICE','PRICE_REMOVED','NO_CHANGE','EXTRACTION_FAILED'],required:true},percentage:Number,status:{type:String,enum:['pending','approved','rejected'],default:'pending',index:true},detectedAt:{type:Date,default:Date.now},reviewedAt:Date,reviewNote:String,confidence:Number},{timestamps:true});
+export default mongoose.models.PriceChange||mongoose.model('PriceChange',S);
