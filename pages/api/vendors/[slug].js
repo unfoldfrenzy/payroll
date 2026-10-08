@@ -1,0 +1,2 @@
+import {db} from '../../../lib/db.js';import Vendor from '../../../models/Vendor.js';import PriceHistory from '../../../models/PriceHistory.js';
+export default async function handler(req,res){await db();const v=await Vendor.findOne({slug:req.query.slug,active:true}).lean();if(!v)return res.status(404).json({error:'Not found'});const history=await PriceHistory.find({vendorId:v._id,verified:true}).sort({recordedAt:-1}).limit(100).lean();return res.json({...v,priceHistory:history});}

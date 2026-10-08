@@ -1,0 +1,1 @@
+import {db} from '../../lib/db.js';export default async function handler(req,res){try{await db();return res.status(200).json({ok:true,database:'connected',time:new Date().toISOString()});}catch(e){return res.status(503).json({ok:false,database:'error',error:e.message});}}
